@@ -104,7 +104,7 @@ $ ssh-keygen -t rsa
 $ cat id_rsa.pub
 ```
 
-- 最後ni Nginx と MySQL を再起動します。
+- 最後に Nginx と MySQL を再起動します。
 
 ```
 $ sudo systemctl restart nginx.service
