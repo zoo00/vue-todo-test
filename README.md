@@ -16,6 +16,7 @@
 - With EventHub
 - With Bulma *
 - With Font Awesome *
+- With Docker（開発用） *
 
 `*` 印つきの項目は、アンインストール方法を後述します。
 
@@ -34,10 +35,40 @@
 スケルトン自体も随時更新していくつもりですので、このリポジトリから fork して作ることをおすすめします。
 
 ### 初期設定
-- 上記「動作環境」のソフトウェアをあらかじめインストールしておきます。
-- `rails-vue-ts-skeleton` および `RailsVueTsSkeleton` という文字列を全文検索し、あなたのアプリケーション名に置換します。
-- `config/database.yml` を編集してデータベースの設定を行います。
+
+- 上記「動作環境」のソフトウェアをあらかじめインストールしておきます。Docker を使う場合と使わない場合で必要となる環境が異なります。
+- `rails-vue-ts-skeleton` および `RailsVueTsSkeleton` という文字列を全文検索し、自分のアプリケーション名に置換します。
 - 必要があれば `config/storage.yml` `config/cable.yml` を編集して Active Storage と Action Cable の設定を行います。
+
+### 環境構築と起動（Docker を使う場合）
+
+- Docker コンテナを構成します。
+
+```
+$ docker-compose build
+```
+
+- パッケージのインストールとデータベースのセットアップを行います。
+
+```
+$ docker-compose run --rm rails rails db:setup
+$ docker-compose run --rm rails bin/yarn install
+```
+
+```
+$ docker-compose run --rm rails rails credentials:edit
+```
+
+- これで環境構築は終了ですので、下記のコマンドで起動します。
+
+```
+$ docker-compose up
+```
+
+
+### 環境構築と起動（Docker を使わない場合）
+
+- `config/database.yml` を編集して `development` データベースの設定を行います。
 - `EDITOR=emacs rails credentials:edit` を実行して、 `master.key` と `credentials.yml.enc` を生成し、保存します。
 - 最後に、パッケージのインストールとデータベースのセットアップのため、ターミナルを開いて、このリポジトリのディレクトリへ移動し、下記のコマンドを実行します。
 
@@ -47,7 +78,6 @@ $ yarn
 $ rake db:setup
 ```
 
-### 起動
 2つターミナルを開き、いずれもこのリポジトリのディレクトリまで移動します。1つめのターミナルで下記のコマンドを実行します。
 
 ```
@@ -97,6 +127,9 @@ $ yarn remove @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icon
 import 'scripts/config/icons'
 ```
 
+### Docker 用設定ファイルの削除
+- `docker-compose.yml` `Dockerfile.dev` `.env.dev` を削除します。
+
+
 ## ToDo
 - [ ] production 環境での最適化
-- [ ] Docker 化
