@@ -65,6 +65,18 @@ $ docker-compose run --rm rails rails credentials:edit
 $ docker-compose up
 ```
 
+- `binding.pry` を使いたい場合は、もうひとつターミナルを開き、まず rails コンテナのコンテナ名を調べます。
+
+```
+$ docker ps
+```
+
+- その後、そのコンテナ名を指定して attach します。
+
+```
+$ docker attach rails-vue-ts-skeleton_rails_1
+```
+
 
 ### 環境構築と起動（Docker を使わない場合）
 
@@ -93,6 +105,7 @@ $ yarn webpack-dev-server
 2つのターミナルを開いた状態で、`http://localhost:3000` へアクセスします。
 
 ### デプロイ
+
 デプロイ設定は [別ファイル](/doc/DEPLOY.md) に分けましたが、デプロイ先の環境や方針に大きく左右されますので、あくまでも参考としてご覧ください。
 
 ## カスタマイズ
