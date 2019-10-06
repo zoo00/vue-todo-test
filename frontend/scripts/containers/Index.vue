@@ -48,9 +48,9 @@ export default {
         this.deleteItemIndexes.splice(id, 1);
       }
     },
-    onRemoveAll() {
-      let newItems: any[] = [];
-      this.items.forEach((name: String, index: Number) => {
+      onRemoveAll() {
+      let newItems: string[] = [];
+      this.items.forEach((name: string, index: number) => {
         if (!this.deleteItemIndexes.includes(index)) {
           newItems.push(name)
         }
