@@ -35,7 +35,7 @@ export default {
     TaskFoot,
   },
   methods: {
-    onAddClicked (newItem: String) {
+    onAddClicked (newItem: string) {
       this.items.push(newItem);
     },
     onRemoveClicked (id: number) {
