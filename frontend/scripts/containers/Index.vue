@@ -2,27 +2,26 @@
 #app
   .wrapper.columns.is-centered
     .column.is-half
-      article.message.is-primary.is-centered
-        .message-header
-          font-awesome-icon(icon="coffee")
-          | Hello, world
-        .message-body.has-text-centered
-          p Welcome to Rails+Vue+TypeScript Skeleton!
-          div
-            img(:src="cat")
-          span.icon
-            i.fas.fa-home
-          button.button.is-primary
-            | Button
+      nav.panel
+        TaskHead
+        TaskInput
+        TaskItem
+        TaskFoot
 </template>
 
 <script lang="ts">
-import cat from 'images/common/cat.jpg'
+import TaskHead from 'scripts/components/TaskHead.vue'
+import TaskItem from 'scripts/components/TaskItem.vue'
+import TaskInput from 'scripts/components/TaskInput.vue'
+import TaskFoot from 'scripts/components/TaskFoot.vue'
 
 export default {
   name: 'Index',
-  computed: {
-    cat: () => cat,
+  components: {
+    TaskHead,
+    TaskItem,
+    TaskInput,
+    TaskFoot,
   },
 }
 </script>
