@@ -1,13 +1,22 @@
 <template lang="pug">
 .task-item.panel-block
   input(type="checkbox")
-  | たすく
-  button.button.is-danger.is-small.is-outlined(type="button") 削除
+  label
+   | {{ item }}
+  button.button.is-danger.is-small.is-outlined(type="button" @click="remove") 削除
 </template>
 
 <script lang="ts">
 export default {
   name: 'TaskItem',
+  props: {
+    item: String
+  },
+  methods: {
+    remove() {
+      this.$emit('remove', this.$vnode.key)
+    }
+  }
 }
 </script>
 

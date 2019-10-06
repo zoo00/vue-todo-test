@@ -4,8 +4,8 @@
     .column.is-half
       nav.panel
         TaskHead
-        TaskInput
-        TaskItem
+        TaskInput(@add="onAddClicked")
+        TaskItem(:item="item" :key="index" v-for="(item, index) in items" @remove="onRemoveClicked")
         TaskFoot
 </template>
 
@@ -17,12 +17,25 @@ import TaskFoot from 'scripts/components/TaskFoot.vue'
 
 export default {
   name: 'Index',
+  data() {
+    return {
+      items: []
+    }
+  },
   components: {
     TaskHead,
     TaskItem,
     TaskInput,
     TaskFoot,
   },
+  methods: {
+    onAddClicked (newItem: String) {
+      this.items.push(newItem);
+    },
+    onRemoveClicked (id: number) {
+      this.items.splice(id, 1);
+    }
+  }
 }
 </script>
 
