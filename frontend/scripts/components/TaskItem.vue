@@ -1,6 +1,6 @@
 <template lang="pug">
 .task-item.panel-block
-  input(type="checkbox")
+  input(type="checkbox" v-model="isChecked" @change="checked")
   label
    | {{ item }}
   button.button.is-danger.is-small.is-outlined(type="button" @click="remove") 削除
@@ -12,9 +12,17 @@ export default {
   props: {
     item: String
   },
+  data() {
+    return {
+      isChecked: false
+    }
+  },
   methods: {
     remove() {
       this.$emit('remove', this.$vnode.key)
+    },
+    checked() {
+      this.$emit('checked', this.isChecked, this.$vnode.key)
     }
   }
 }

@@ -5,8 +5,13 @@
       nav.panel
         TaskHead
         TaskInput(@add="onAddClicked")
-        TaskItem(:item="item" :key="index" v-for="(item, index) in items" @remove="onRemoveClicked")
-        TaskFoot
+        TaskItem(
+          :item="item"
+          :key="index"
+          v-for="(item, index) in items"
+          @remove="onRemoveClicked"
+          @checked="onChecked")
+        TaskFoot(@removeAll="onRemoveAll")
 </template>
 
 <script lang="ts">
@@ -19,7 +24,8 @@ export default {
   name: 'Index',
   data() {
     return {
-      items: []
+      items: [],
+      deleteItemIndexes: []
     }
   },
   components: {
@@ -34,8 +40,25 @@ export default {
     },
     onRemoveClicked (id: number) {
       this.items.splice(id, 1);
+    },
+    onChecked (isChecked: boolean, id: number) {
+      if (isChecked){
+        this.deleteItemIndexes.push(id);
+      } else {
+        this.deleteItemIndexes.splice(id, 1);
+      }
+    },
+    onRemoveAll() {
+      let newItems: any[] = [];
+      this.items.forEach((name: String, index: Number) => {
+        if (!this.deleteItemIndexes.includes(index)) {
+          newItems.push(name)
+        }
+      })
+      this.items = newItems
+      this.deleteItemIndexes = []
     }
-  }
+  },
 }
 </script>
 

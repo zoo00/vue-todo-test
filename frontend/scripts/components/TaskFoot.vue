@@ -1,11 +1,17 @@
 <template lang="pug">
 .task-foot.panel-block
-  button.button.is-danger チェックしたタスクを削除
+  button.button.is-danger(@click="removeAll") チェックしたタスクを削除
 </template>
 
 <script lang="ts">
 export default {
   name: 'TaskFoot',
+  methods: {
+    removeAll() {
+      this.$emit('removeAll')
+    }
+  }
+
 }
 </script>
 
